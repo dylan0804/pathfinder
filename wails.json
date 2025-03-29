@@ -1,0 +1,14 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "pathfinder",
+  "outputfilename": "pathfinder",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "devServer": "localhost:34115",
+  "author": {
+    "name": "dylan0804",
+    "email": "dylan.halim@binus.ac.id"
+  }
+}
