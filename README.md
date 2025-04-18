@@ -1,51 +1,100 @@
-# Pathfinder
+# Pathfinder: Fast File Search Application
 
-Cross‑platform desktop file searcher built with Wails and Go.
+A cross-platform desktop file search application built with [Wails](https://wails.app/) (Go + web frontend). It uses Go’s built-in filesystem APIs and a simple concurrent walker to deliver fast, real-time search results via a lightweight UI.
 
----
+## Features
 
-## 📥 Download
+- **Concurrent traversal** using Go goroutines and channels
+- **Pattern matching** (substring or regex)
+- **Minimal dependencies**: single binary with embedded frontend assets
+- **Cross-platform**: runs on Windows, macOS, and Linux
 
-Grab the right build for your OS—no cloning or building needed:
+## Prerequisites
 
-- **Windows (64‑bit)**  
-  [Download pathfinder.exe](https://github.com/dylan0804/pathfinder/releases/latest/download/pathfinder.exe)
+- Go **1.18+**
+- Node.js **16+** and npm (or Yarn)
+- [Wails CLI](https://wails.app/) v2:
+  ```bash
+  go install github.com/wailsapp/wails/v2/cmd/wails@latest
+  ```
 
-- **macOS (Intel & Apple Silicon)**  
-  [Download pathfinder.app.zip](https://github.com/dylan0804/pathfinder/releases/latest/download/pathfinder.app.zip)
+## Getting Started
 
-- **Linux (64‑bit)**  
-  [Download pathfinder-linux-amd64](https://github.com/dylan0804/pathfinder/releases/latest/download/pathfinder-linux-amd64)
+1. Clone the repo:
 
-Unzip (if needed), make it executable (`chmod +x` on Linux/macOS), and run!
+   ```bash
+   git clone https://github.com/dylan0804/pathfinder.git
+   cd pathfinder
+   ```
 
----
+2. Build frontend assets:
 
-## 🚀 Features
+   ```bash
+   cd frontend
+   npm install      # or yarn install
+   npm run build    # outputs to frontend/dist/
+   cd ..
+   ```
 
-- Fast, concurrent directory walk  
-- Case‑insensitive substring & regex search  
-- Skips dot‑dirs (`.git`, `node_modules`, `vendor`)  
-- Emits results in real time via Wails events
+3. Run in development mode (with live reload):
 
-## ⚙️ Prerequisites
+   ```bash
+   wails dev
+   ```
 
-- Go 1.18+  
-- Node.js 16+ (for frontend assets)  
-- Wails v2 CLI
+## Production Build
 
-## 🔧 Quickstart (Production)
+1. Export the production environment variable:
+
+   ```bash
+   # macOS/Linux (bash/zsh)
+   export WAILS_ENV=production
+
+   # Windows (CMD)
+   set WAILS_ENV=production
+
+   # Windows (PowerShell)
+   $env:WAILS_ENV = "production"
+   ```
+
+2. Build the application:
+
+   ```bash
+   wails build
+   ```
+
+3. Run the binary:
+
+   ```bash
+   cd build/bin/pathfinder
+   
+   # macOS: open the .app bundle
+   open pathfinder.app
+   
+   # Windows: run the .exe
+   .\pathfinder.exe
+   ```
+
+## Cross-Compilation (Example)
+
+From macOS/Linux terminal:
 
 ```bash
-# Build frontend
+export WAILS_ENV=production
 npm --prefix frontend install
 npm --prefix frontend run build
 
-# Build production binaries
-export WAILS_ENV=production
-wails build
+# Cross-compile for Windows 64-bit:
+GOOS=windows GOARCH=amd64 wails build
+```
 
-# Run the binary for your platform:
-#   macOS:  build/bin/pathfinder/pathfinder.app
-#   Windows: build/bin/pathfinder/pathfinder.exe
-#   Linux:   build/bin/pathfinder/pathfinder-linux-amd64
+After building, the Windows executable is located in:
+
+```
+build/bin/pathfinder/pathfinder.exe
+```
+
+## License
+
+MIT © Dylan Christian Dihalim
+
