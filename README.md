@@ -1,19 +1,74 @@
-# README
+# Pathfinder: Fast File Search Application
 
-## About
+A cross-platform desktop file search application built with [Wails](https://wails.app/) (Go + web frontend). It uses Go’s built-in filesystem APIs and a simple concurrent walker to deliver fast, real-time search results via a lightweight UI.
 
-This is the official Wails Vue-TS template.
+## Features
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+- **Concurrent traversal** using Go goroutines and channels
+- **Pattern matching** (substring or regex)
+- **Minimal dependencies**: single binary with embedded frontend assets
+- **Cross-compile** for Windows, macOS, and Linux
 
-## Live Development
+## Prerequisites
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+- Go **1.18+** installed
+- Node.js **16+** and npm (or Yarn)
+- [Wails CLI](https://wails.app/) v2:
+  ```bash
+  go install github.com/wailsapp/wails/v2/cmd/wails@latest
+  ```
 
-## Building
+## Getting Started
 
-To build a redistributable, production mode package, use `wails build`.
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/dylan0804/pathfinder.git
+   cd pathfinder
+   ```
+
+2. Install frontend dependencies and build assets:
+   ```bash
+   cd frontend
+   npm install      # or yarn
+   npm run build    # outputs to frontend/dist/
+   cd ..
+   ```
+
+3. Run in development mode (with live reload):
+   ```bash
+   wails dev
+   ```
+
+## Production Build
+
+1. Set production environment:
+   ```bash
+   export WAILS_ENV=production      # macOS/Linux (bash/zsh)
+   set WAILS_ENV=production         # Windows cmd
+   $env:WAILS_ENV = "production"    # Windows PowerShell
+   ```
+
+2. Build the app:
+   ```bash
+   wails build
+   ```
+
+3. Run the binary:
+   ```bash
+   wails dev
+   ```
+
+## Cross Compilation
+
+From macOS/Linux:
+```bash
+export WAILS_ENV=production
+GOOS=windows GOARCH=amd64 wails build
+```
+
+The Windows executable will be in `build/bin/pathfinder.exe`.
+
+## License
+
+MIT © Dylan Christiandi Halim
+
