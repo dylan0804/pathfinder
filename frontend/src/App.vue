@@ -4,11 +4,10 @@
   >
     <router-view />
   </div>
+
+  <Toast />
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
-const num = ref(5)
-
+    import Toast from 'primevue/toast';
 </script>

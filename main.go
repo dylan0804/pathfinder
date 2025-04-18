@@ -20,7 +20,7 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:             "File Finder",
+		Title:             "Pathfinder",
 		Width:             1024,
 		Height:            768,
 		MinWidth:          800,
@@ -59,13 +59,13 @@ func main() {
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
-				Title:   "File Finder",
-				Message: "© 2025 File Finder",
+				Title:   "Pathfinder",
+				Message: "© 2025 Pathfinder",
 			},
 		},
 
 		Linux: &linux.Options{
-			Icon:                  nil, // Add icon path for production
+			Icon:                  nil,
 			WindowIsTranslucent:  false,
 		},
 	})
