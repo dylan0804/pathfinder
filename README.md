@@ -40,7 +40,6 @@ A cross-platform desktop file search application built with [Wails](https://wail
    ```
 
 ## Production Build
-
 1. Set production environment:
    ```bash
    export WAILS_ENV=production      # macOS/Linux (bash/zsh)
@@ -55,7 +54,8 @@ A cross-platform desktop file search application built with [Wails](https://wail
 
 3. Run the binary:
    ```bash
-   wails dev
+   cd build/bin/pathfinder
+   open pathfinder.app
    ```
 
 ## Cross Compilation
