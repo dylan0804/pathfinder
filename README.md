@@ -93,8 +93,3 @@ After building, the Windows executable is located in:
 ```
 build/bin/pathfinder/pathfinder.exe
 ```
-
-## License
-
-MIT © Dylan Christian Dihalim
-
